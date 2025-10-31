@@ -42,6 +42,12 @@ npm run start:dev
 # Server on http://localhost:8888
 ```
 
+5. **Open the demo front-end (optional)**
+
+Open `frontend/index.html` directly in your browser. The page is a lightweight
+HTML/JS client that exercises the API endpoints (register, login, create/list
+todos) and logs responses in the built-in console panel.
+
 ## API
 
 ### POST /register
@@ -106,3 +112,6 @@ datasource db {
 Set `DATABASE_URL` to your Postgres connection string, then run migrate again.
 
 ---
+
+Need a deeper breakdown? See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for a
+layer-by-layer overview covering the front-end, back-end, database, and API.

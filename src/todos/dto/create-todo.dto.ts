@@ -1,6 +1,8 @@
 import { IsDateString, IsNotEmpty, IsString, MaxLength } from 'class-validator';
 
 export class CreateTodoDto {
+  // Message is displayed verbatim in the front-end, so we trim length here to
+  // keep the UI manageable.
   @IsString()
   @IsNotEmpty()
   @MaxLength(255)

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cat Fact ToDo Tracker</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!--
+      This page is a lightweight demo front-end that exercises the NestJS API.
+      It is intentionally framework-free so it can be opened directly from disk
+      during local development.
+    -->
+    <main class="layout">
+      <header>
+        <h1>Cat Fact ToDo Tracker</h1>
+        <p>
+          Use this page to register, log in, and manage todo items that will
+          automatically receive a random cat fact from the backend service.
+        </p>
+      </header>
+
+      <section class="card">
+        <h2>1. Register</h2>
+        <form id="register-form">
+          <!-- Keep the markup simple; logic lives in app.js -->
+          <label>
+            Email
+            <input type="email" id="register-email" required />
+          </label>
+          <label>
+            Password
+            <input type="password" id="register-password" minlength="6" required />
+          </label>
+          <button type="submit">Register</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>2. Login</h2>
+        <form id="login-form">
+          <label>
+            Email
+            <input type="email" id="login-email" required />
+          </label>
+          <label>
+            Password
+            <input type="password" id="login-password" minlength="6" required />
+          </label>
+          <button type="submit">Login</button>
+        </form>
+        <p class="token-status" id="token-status">Not authenticated</p>
+      </section>
+
+      <section class="card" id="todo-section" hidden>
+        <h2>3. Add todo</h2>
+        <form id="todo-form">
+          <!--
+            The API expects an ISO date string (YYYY-MM-DD). The browser's
+            native date picker enforces the format and keeps UX simple.
+          -->
+          <label>
+            Message
+            <input type="text" id="todo-message" maxlength="255" required />
+          </label>
+          <label>
+            Date
+            <input type="date" id="todo-date" required />
+          </label>
+          <button type="submit">Create todo</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>4. Todos</h2>
+        <!--
+          The list is rendered dynamically from API responses. A template is
+          simpler than client-side routing for this demo scale.
+        -->
+        <button id="refresh-todos" type="button">Refresh list</button>
+        <ul id="todo-list" class="todo-list"></ul>
+      </section>
+
+      <section class="card">
+        <h2>Console</h2>
+        <pre id="console-output" class="console-output">Ready.</pre>
+      </section>
+    </main>
+
+    <script src="app.js" type="module"></script>
+  </body>
+</html>

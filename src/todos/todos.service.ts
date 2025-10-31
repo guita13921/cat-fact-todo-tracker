@@ -16,10 +16,13 @@ export class TodosService {
 
   async create(userId: number, message: string, dateStr: string) {
     const date = toDateOnly(dateStr);
-    // Fetch cat fact
+    // Fetch cat fact from the public API. Timeout prevents the request from
+    // hanging indefinitely and blocking todo creation.
     const { data } = await axios.get('https://catfact.ninja/fact', { timeout: 8000 });
     const catFact: string = data?.fact || 'Cats are mysterious.';
 
+    // Persist todo and cat fact together so the front-end can render a single
+    // payload without additional requests.
     const todo = await this.prisma.todo.create({
       data: { userId, message, date, catFact },
     });
@@ -27,6 +30,7 @@ export class TodosService {
   }
 
   async list(userId: number) {
+    // Sort results to keep UX deterministic; newest entries appear first.
     return this.prisma.todo.findMany({
       where: { userId },
       orderBy: [{ createdAt: 'desc' }, { id: 'desc' }],

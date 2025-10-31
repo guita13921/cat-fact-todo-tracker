@@ -6,6 +6,8 @@ import { JwtStrategy } from './jwt.strategy';
 
 @Module({
   imports: [
+    // JwtModule is registered globally so both the AuthService and the guard
+    // infrastructure can inject it without re-declaring dependencies.
     JwtModule.register({
       global: true,
       secret: process.env.JWT_SECRET || 'dev_secret',
